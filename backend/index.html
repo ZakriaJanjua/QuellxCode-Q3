@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuellxCode Q3</title>
+  </head>
+  <body>
+    <form action="http://localhost:5000" onsubmit="event.preventDefault()" method="POST">
+      <h3>Longitude</h3>
+      <input id="longitude"></input>
+      <br />
+      <h3>Latitude</h3>
+      <input id="latitude"></input>
+      <br />
+      <br />
+      <span>Longitude's sphere</span>
+      <span id="longitudeSphere"></span>
+      <br />
+      <span>Latitude's sphere</span>
+      <span id="latitudeSphere"></span>
+      <button type="submit">Send Data</button>
+    </form>
+  </body>
+  <script>
+    navigator.geolocation.getCurrentPosition((position) => {
+      document.getElementById("longitude").value =
+        position.coords.longitude;
+       document.getElementById("latitude").value = position.coords.latitude;
+      document.getElementById("longitudeSphere").innerText = `[${
+        position.coords.longitude - 0.02
+      } to ${position.coords.longitude + 0.02}]`;
+      document.getElementById("latitudeSphere").innerText = `[${
+        position.coords.latitude + 0.02
+      } to ${position.coords.latitude - 0.02}]`;
+    });
+  </script>
+</html>
